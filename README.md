@@ -197,13 +197,9 @@ It is a map of key-value pairs that can be set on a per-thread basis since it is
 ```c++
 #include "spdlog/spdlog.h"
 #include "spdlog/mdc"
-{
-    spdlog::mdc::put("key1", "value1");
-    spdlog::mdc::put("key2", "value2");
-    // use the %& formatter flag to print all MDC values
-    spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] [%&] %v");
-    spdlog::info("Some log message with context");
-}
+...
+spdlog::mdc::put("key1", "value1");
+spdlog::mdc::put("key2", "value2");
 ```
 
 ---

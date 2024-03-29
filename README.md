@@ -138,23 +138,6 @@ void daily_example()
 
 ```
 
----
-#### Backtrace support
-```c++
-// Debug messages can be stored in a ring buffer instead of being logged immediately.
-// This is useful to display debug logs only when needed (e.g. when an error happens).
-// When needed, call dump_backtrace() to dump them to your log.
-
-spdlog::enable_backtrace(32); // Store the latest 32 messages in a buffer. 
-// or my_logger->enable_backtrace(32)..
-for(int i = 0; i < 100; i++)
-{
-  spdlog::debug("Backtrace message {}", i); // not logged yet..
-}
-// e.g. if some error happened:
-spdlog::dump_backtrace(); // log them now! show the last 32 messages
-// or my_logger->dump_backtrace(32)..
-```
 
 ---
 #### Periodic flush
@@ -205,6 +188,22 @@ void binary_example()
     // logger->info("uppercase, no delimiters, no position info: {:Xsp}", spdlog::to_hex(buf));
 }
 
+```
+
+---
+#### Mapped diagnostic context (MDC)
+MDC is a map of contextual information that can be used to enrich log messages.
+It is a map of key-value pairs that can be set on a per-thread basis since it is stored in thread-local storage.
+```c++
+#include "spdlog/spdlog.h"
+#include "spdlog/mdc"
+{
+    spdlog::mdc::put("key1", "value1");
+    spdlog::mdc::put("key2", "value2");
+    // use the %& formatter flag to print all MDC values
+    spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] [%&] %v");
+    spdlog::info("Some log message with context");
+}
 ```
 
 ---

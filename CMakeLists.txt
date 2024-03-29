@@ -218,7 +218,8 @@ set(SPDLOG_HEADERS
     "include/spdlog/sinks/systemd_sink.h"
     "include/spdlog/sinks/tcp_sink.h"
     "include/spdlog/sinks/udp_sink.h"
-    )
+    "include/spdlog/mdc.h"
+)
 
 set(SPDLOG_SRCS 
     "src/async_logger.cpp"

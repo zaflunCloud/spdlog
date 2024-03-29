@@ -26,7 +26,7 @@ void udp_example();
 void custom_flags_example();
 void file_events_example();
 void replace_default_logger_example();
-
+void mdc_example();
 // Uncomment to enable source location support.
 // This will add filename/line/column info to the log (and in to the resulting binary so take care).
 // #define SPDLOG_SOURCE_LOCATION
@@ -75,6 +75,7 @@ int main(int, char *[]) {
         custom_flags_example();
         file_events_example();
         replace_default_logger_example();
+        mdc_example();
 
         // Flush all *registered* loggers using a worker thread every 3 seconds.
         // note: registered loggers *must* be thread safe for this to work correctly!
@@ -349,4 +350,14 @@ void replace_default_logger_example() {
     spdlog::debug("This message should be displayed..");
 
     spdlog::set_default_logger(old_logger);
+}
+
+#include "spdlog/mdc.h"
+void mdc_example()
+{
+    spdlog::mdc::put("key1", "value1");
+    spdlog::mdc::put("key2", "value2");
+    // use the %& formatter flag to print all MDC values
+    spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] [%&] %v");
+    spdlog::info("Some log message with context");
 }

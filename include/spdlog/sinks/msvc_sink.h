@@ -4,7 +4,6 @@
 #pragma once
 
 #include <mutex>
-#include <string>
 
 #include "../details/null_mutex.h"
 #include "./base_sink.h"

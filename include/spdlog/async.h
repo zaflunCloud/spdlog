@@ -62,7 +62,7 @@ inline std::shared_ptr<spdlog::logger> create_async(std::string logger_name, Sin
 }
 
 template <typename Sink, typename... SinkArgs>
-inline std::shared_ptr<spdlog::logger> create_async_nb(std::string logger_name, SinkArgs &&...sink_args) {
+std::shared_ptr<spdlog::logger> create_async_nb(std::string logger_name, SinkArgs &&...sink_args) {
     return async_factory_nonblock::create<Sink>(std::move(logger_name), std::forward<SinkArgs>(sink_args)...);
 }
 

@@ -59,7 +59,7 @@ jobs:
           ctest -j2 --output-on-failure
 
   build_osx:
-    runs-on: macOS-latest
+    runs-on: macOS-14
     name: "OS X Clang (C++20, Release)"
     steps:
       - uses: actions/checkout@main

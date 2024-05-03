@@ -147,7 +147,7 @@ public:
 static std::array<const char *, 7> full_days{{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}};
 
 template <typename ScopedPadder>
-class A_formatter : public flag_formatter {
+class A_formatter final : public flag_formatter {
 public:
     explicit A_formatter(padding_info padinfo)
         : flag_formatter(padinfo) {}
@@ -741,7 +741,7 @@ private:
 // Class for formatting Mapped Diagnostic Context (MDC) in log messages.
 // Example: [logger-name] [info] [mdc_key_1:mdc_value_1 mdc_key_2:mdc_value_2] some message
 template <typename ScopedPadder>
-class mdc_formatter : public flag_formatter {
+class mdc_formatter final : public flag_formatter {
 public:
     explicit mdc_formatter(padding_info padinfo)
             : flag_formatter(padinfo) {}
